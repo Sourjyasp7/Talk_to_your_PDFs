@@ -6,8 +6,8 @@ import os
 
 load_dotenv()
 
-st.set_page_config(page_title="Dynamic RAG", layout="wide")
-st.title("🤖 Dynamic Modular RAG")
+st.set_page_config(page_title="Talk to your PDFs", layout="wide")
+st.title("Your own Teacher from your PDFs! 📚")
 
 # --- Session State Management ---
 if "vector_store" not in st.session_state:
