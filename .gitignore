@@ -1,0 +1,22 @@
+# API Keys and Secrets
+.env
+
+# Python Environment and Cache
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Data and Vector Store
+# We ignore the local index because it can be large and contains private data
+faiss_index/
+
+# Documents
+# Ignore PDFs so you don't accidentally leak private docs to GitHub
+*.pdf
+
+# OS Specific
+.DS_Store
+Thumbs.db

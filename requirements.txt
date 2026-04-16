@@ -1,0 +1,29 @@
+import streamlit as st
+from engine import get_rag_response # Import logic from Part 2
+
+st.set_page_config(page_title="Modular RAG Bot", page_icon="🏗️")
+
+st.title("🏗️ Modular RAG Assistant")
+st.markdown("This app uses a pre-encoded vector store for fast retrieval.")
+
+# Check if the vector store exists before allowing questions
+import os
+if not os.path.exists("faiss_index"):
+    st.error("Vector store not found! Please run 'python ingest.py' first.")
+else:
+    user_query = st.chat_input("Ask a question about your saved documents...")
+
+    if user_query:
+        with st.chat_message("user"):
+            st.write(user_query)
+
+        with st.chat_message("assistant"):
+            with st.spinner("Querying the engine..."):
+                # Call the engine
+                response = get_rag_response(user_query)
+                
+                st.write(response["result"])
+
+                with st.expander("View Context Sources"):
+                    for i, doc in enumerate(response["source_documents"]):
+                        st.caption(f"Source {i+1}: {doc.page_content[:200]}...")
